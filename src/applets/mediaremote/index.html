@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LCARS</title>
+  <link rel="stylesheet" href="css/lcars.css">
+  <style>
+  html, body { background: black; overflow: hidden; }
+  .buttonfull { width: 100% }
+  .topbutton { width: 100px; top: 8px; }
+  .topbuttonleft1 { position: relative; right: -10px; }
+  .topbuttonright1 { position: relative; right: 30px; }
+  .topbuttonleft2 { position: relative; right: -60px; }
+  .topbuttonright2 { position: relative; right: 10px; }
+  .buttonlarge { height: 75px; width: 150px; }
+  .bigbtntext { position: relative; top: 1.5em; }
+  .rowdivider { height: 5px }
+  .rowcheatup { position: relative; top: -40px; }
+  </style>
+</head>
+<body onLoad="loaded();">
+    <!-- ===== UPPER PANEL ===== -->
+    
+      <div class="lcars-container">
+        <!-- LEFT MENU
+        =========================================================== -->
+        <div class="lcars-row">
+          <div class="lcars-column u-2-8">
+            <ul class="lcars-menu">
+              <li class="lcars-blue-bg tall" style="position: relative;">
+                <div style="position: absolute; bottom: 5px;" id="hostname"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="lcars-column u-1-8">
+            <div style="height: 75px">
+              <!--
+              <iframe
+                style="-webkit-transform: scale(0.78); -webkit-transform-origin: 0 0;"
+                id="forecast_embed" type="text/html" width="140%" frameborder="0" src="http://forecast.io/embed/#color=9999cc&lat=42.394501&lon=-71.114794&name=UDL Under">
+              </iframe>
+              -->
+            </div>
+          </div>
+          <div class="lcars-column u-5-8">
+            <h1 class="right" id="roomname">LIVING ROOM</h1>
+          <div class="lcars-row">
+            <div class="lcars-column u-5-8">
+              &nbsp;
+            </div>
+            <div class="lcars-column u-1-8" onClick="showOnly('groupLivingRoom'); roomname('LIVING ROOM');">
+              <a href="#" class="lcars-button radius topbutton topbuttonleft1">LIVING</a>
+            </div>
+            <div class="lcars-column u-1-8">&nbsp;</div>
+            <div class="lcars-column u-1-8" onClick="showOnly('groupOffice'); roomname('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OFFICE');">
+              <a href="#" class="lcars-button radius topbutton topbuttonright1">OFFICE</a>
+            </div>
+          </div>
+          </div>
+        </div>
+  
+      <!-- BOTTOM ROW
+      =========================================================== -->
+      <div class="lcars-row">
+  
+        <!-- BOTTOM LEFT ELBOW
+        =========================================================== -->
+        <div class="lcars-column u-2-8 lcars-elbow left top lcars-grayBlue-bg">
+          <a id="extra"></a>
+        </div>
+  
+        <!-- BOTTOM DIVIDER AND BUTTONS
+        =========================================================== -->
+        <div class="lcars-column u-6-8 lcars-divider bottom lcars-grayBlue-blue-divide">
+          <div class="lcars-row">
+            <div class="lcars-column u-5-8">
+              &nbsp;
+            </div>
+            <div class="lcars-column u-1-8" onClick="showOnly('groupAndi'); roomname('ANDI\'S BEDROOM');">
+              <a href="#" class="lcars-button radius topbutton topbuttonleft2">ANDI</a>
+            </div>
+            <div class="lcars-column u-1-8">&nbsp;</div>
+            <div class="lcars-column u-1-8" onClick="showOnly('groupRM'); roomname('R.M.\'S BEDROOM');">
+              <a href="#" class="lcars-button radius topbutton topbuttonright2">R.M.</a>
+            </div>
+          </div>
+
+        </div>
+  
+      </div>
+
+
+      <!-- Divider -->
+      <div class="lcars-row rowdivider"></div>
+
+  <!-- ===== LOWER PANEL -- Living Room ===== -->
+
+  <div class="room" id="groupLivingRoom" style="display: block">
+    <!-- TOP ROW
+    =========================================================== -->
+    <div class="lcars-row spaced">
+
+      <!-- TOP LEFT ELBOW
+      =========================================================== -->
+      <div class="lcars-column u-2-8 lcars-elbow left bottom lcars-red-bg">
+        <a href="#">CURRENT</a>
+      </div>
+
+      <!-- TOP DIVIDER AND BUTTONS
+      =========================================================== -->
+      <div class="lcars-column u-6-8 lcars-divider lcars-red-blue-divide">
+        <div class="lcars-row">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="lcars-row">
+
+      <!-- LEFT MENU
+      =========================================================== -->
+      <div class="lcars-column u-2-8">
+        <ul class="lcars-menu">
+          <li id="lrl_scenes" class="lrl lcars-red-bg" style="height: 150px" onClick="showOnly('subLivingRoomScenes', 'subroom'); highlight('lrl', 'lrl_scenes');">SCENES</li>
+          <li id="lrl_av" class="lrl lcars-blue-bg tall" onClick="showOnly('subLivingRoomAV', 'subroom'); highlight('lrl', 'lrl_av');"><a href="#">A/V DEVICES</a></li>
+          <li id="lrl_lights" class="lrl lcars-blue-bg tall" onClick="showOnly('subLivingRoomLights', 'subroom'); highlight('lrl', 'lrl_lights');">LIGHTS</li>
+        </ul>
+      </div>
+
+      <!-- CENTER SECTION --- SCENES
+      =========================================================== -->
+      <div class="subroom lcars-column u-6-8" id="subLivingRoomScenes">
+        <div class="lcars-row rowcheatup">
+          
+          <div class="lcars-column u-1-2">
+            <a href="#" class="lcars-button radius buttonlarge" onclick="scene_lr_lightsonly_bright();">LIGHTS ONLY</a>
+          </div>
+          <div class="lcars-column u-1-2">
+            <a href="#" class="lcars-button radius buttonlarge" onclick="scene_lr_lightsonly_half();">DIM LIGHTS ONLY</a>
+          </div>
+        </div>
+        
+        <div class="lcars-row rowcheatup rowdivider"></div>
+        
+        <div class="lcars-row rowcheatup">
+          
+          <div class="lcars-column u-1-2">
+            <a href="#" class="lcars-button radius buttonlarge" onclick="scene_lr_movietime();">MOVIE</a>
+          </div>
+          <div class="lcars-column u-1-2">
+            <a href="#" class="lcars-button radius buttonlarge" onclick="scene_lr_radio();">FIP</a>
+          </div>
+        </div>
+        
+        </div>
+
+      <!-- CENTER SECTION --- A/V DEVICES
+      =========================================================== -->
+      <div class="subroom lcars-column u-6-8" id="subLivingRoomAV" style="display: none">
+        <div class="lcars-row rowcheatup">
+          
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge"><span class="bigbtntext">PROJECTOR ON</span></a>
+          </div>
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge"><span class="bigbtntext">STEREO ON</span></a>
+          </div>
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge"><span class="bigbtntext">SOURCE: MEDIA</span></a>
+          </div>
+        </div>
+        
+        <div class="lcars-row rowcheatup rowdivider"></div>
+        
+        <div class="lcars-row rowcheatup">
+          
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge"><span class="bigbtntext">PROJECTOR OFF</span></a>
+          </div>
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge"><span class="bigbtntext">STEREO OFF</span></a>
+          </div>
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge"><span class="bigbtntext">SOURCE: FIP</span></a>
+          </div>
+        </div>
+        
+        </div>
+
+
+      <!-- CENTER SECTION --- LIGHTS
+      =========================================================== -->
+      <div class="subroom lcars-column u-6-8" id="subLivingRoomLights" style="display: none">
+        <div class="lcars-row rowcheatup">
+          
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge" onclick="lights_lr_bright();"><span class="bigbtntext">LIGHTS BRIGHT</span></a>
+          </div>
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge" onclick="lights_lr_movie();"><span class="bigbtntext">LIGHTS MOVIE</span></a>
+          </div>
+        </div>
+        
+        <div class="lcars-row rowcheatup rowdivider"></div>
+        
+        <div class="lcars-row rowcheatup">
+          
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge" onclick="lights_lr_half();"><span class="bigbtntext">LIGHTS DIM</span></a>
+          </div>
+          <div class="lcars-column u-1-3">
+            <a href="#" class="lcars-button radius buttonlarge" onclick="lights_lr_off();"><span class="bigbtntext">LIGHTS OFF</span></a>
+          </div>
+          <div class="lcars-column u-1-3">
+
+          </div>
+        </div>
+        
+        </div>
+
+
+      </div>
+    </div> <!-- END Living Room -->
+
+
+
+
+  <!-- ===== LOWER PANEL -- Office ===== -->
+
+  <div class="room" id="groupOffice" style="display: none">
+    <!-- TOP ROW
+    =========================================================== -->
+    <div class="lcars-row spaced">
+
+      <!-- TOP LEFT ELBOW
+      =========================================================== -->
+      <div class="lcars-column u-2-8 lcars-elbow left bottom lcars-red-bg">
+        <a href="#">CURRENT</a>
+      </div>
+
+      <!-- TOP DIVIDER AND BUTTONS
+      =========================================================== -->
+      <div class="lcars-column u-6-8 lcars-divider lcars-red-blue-divide">
+        <div class="lcars-row">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="lcars-row">
+
+      <!-- LEFT MENU
+      =========================================================== -->
+      <div class="lcars-column u-2-8">
+        <ul class="lcars-menu">
+          <li class="lcars-red-bg tall" style="height: 150px">SCENES</li>
+          <li class="lcars-blue-bg tall">LIGHTS</li>
+          <li class="lcars-grayBlue-bg tall">&nbsp;</li>
+        </ul>
+      </div>
+
+      <!-- CENTER SECTION
+      =========================================================== -->
+      <div class="lcars-column u-6-8">
+        <div class="lcars-row rowcheatup">
+          
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_bright();"><span class="bigbtntext">BRIGHT</span></a>
+          </div>
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_moodyblues();"><span class="bigbtntext">MOODY</span></a>
+          </div>
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_beach();"><span class="bigbtntext">BEACH</span></a>
+          </div>
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_sunset();"><span class="bigbtntext">SUNSET</span></a>
+          </div>
+        </div>
+        
+        <div class="lcars-row rowcheatup rowdivider"></div>
+        
+        <div class="lcars-row rowcheatup">
+          
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_dim();"><span class="bigbtntext">DIM</span></a>
+          </div>
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_party();"><span class="bigbtntext">PARTY</span></a>
+          </div>
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_graygreen();"><span class="bigbtntext">GRAY GREEN</span></a>
+          </div>
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_deepred();"><span class="bigbtntext">DEEP RED</span></a>
+          </div>
+        </div>
+        
+        <div class="lcars-row rowcheatup rowdivider"></div>
+
+        <div class="lcars-row rowcheatup">
+          
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_off();"><span class="bigbtntext">OFF</span></a>
+          </div>
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_bluerain();"><span class="bigbtntext">STORM</span></a>
+          </div>
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_complements();"><span class="bigbtntext">COMPLEMENTS</span></a>
+          </div>
+          <div class="lcars-column u-1-4">
+            <a href="#" class="lcars-button radius buttonlarge" onClick="lights_o_feetup();"><span class="bigbtntext">FEET UP</span></a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div> <!-- END Office -->
+
+
+
+
+    </div>
+
+    <script src="remote.js"></script>
+    <script>
+      function loaded()
+      {
+        document.getElementById("hostname").innerHTML = window.location.hostname;
+        document.getElementById("extra").innerHTML = navigator.platform;
+      }
+      
+      function highlight(cl, id)
+      {
+        var i, list;
+        list = document.getElementsByClassName(cl);
+        for (i=0; i<list.length; i++)
+        {
+          if (list[i].id == id)
+          {
+            list[i].classList.add('lcars-red-bg');
+            list[i].classList.remove('lcars-blue-bg');
+          }
+          else
+          {
+            list[i].classList.add('lcars-blue-bg');
+            list[i].classList.remove('lcars-red-bg');
+          }
+        }
+      }
+      
+      function roomname(name)
+      {
+        document.getElementById("roomname").innerHTML = name;
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>comrade</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="applets.js"></script>
+  </head>
+  <body onload='pageLoaded();'>
+    <div id="outer">
+      <div id="container">
+        <div id="logo">
+          <h1>comrade</h1>
+          <h3>ver 0.0.1 <!-- grr, gives electron version, not app version<script>document.write(electron.getVersion)</script> --></h3>
+        </div>
+
+        <div id="buttonbar">
+          <ul>
+            <li>
+              <button id='btnClock' onClick='launch("clock");'>Clock</button>
+            </li>
+            <li>
+              <button id='btnMediaRemote' onClick='launch("mediaremote");'>Media Remote</button>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+      <div id="versions">
+        node ver <script>document.write(process.versions.node)</script>,
+        Chrome ver <script>document.write(process.versions.chrome)</script>,
+        Electron ver <script>document.write(process.versions.electron)</script>.
+      </div>
+    </div>
+  </body>
+</html>

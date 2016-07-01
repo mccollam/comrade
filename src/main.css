@@ -1,0 +1,44 @@
+@font-face {
+    font-family: SovjetBox;
+    src: url("../resources/fonts/sovjetbox/SovjetBoxBd_v0_9.otf");
+}
+
+body {
+    background-image: url("../resources/bg.png");
+    overflow: hidden;
+    display: flex;
+}
+
+#outer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+#container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+#logo {
+    display: flex;
+    position: relative;
+    left: 60px;
+    top: 30px;
+    font-family: SovjetBox;
+    color: yellow;
+    text-shadow: 2px 2px 5px red;
+    flex-grow: 1;
+
+}
+
+#buttonbar {
+    display: flex;
+}
+
+#versions {
+    font-size: smaller;
+}

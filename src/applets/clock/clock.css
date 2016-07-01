@@ -1,0 +1,26 @@
+body, html {
+    /* Need to hide overflow to prevent scrollbars when using 100% height (see
+    https://web-design-weekly.com/2014/11/18/viewport-units-vw-vh-vmin-vmax/) */
+    overflow: hidden;
+    height: 100%;
+    background: black;
+    color: gray;
+}
+
+#holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#clock {
+    display: flex;
+    font-size: 35vmin;
+}
+
+#date {
+    display: flex;
+    font-size: 10vmin;
+}

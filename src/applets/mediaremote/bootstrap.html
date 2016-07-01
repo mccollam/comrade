@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Remote</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-md-3"><button class="btn btn-default" onClick="showOnly('groupLivingRoom');">Living Room</button></div>
+        <div class="col-md-3"><button class="btn btn-default" onClick="showOnly('groupOffice');">Office</button></div>
+        <div class="col-md-3"><button class="btn btn-default" onClick="showOnly('groupAndi');">Andi's Room</button></div>
+        <div class="col-md-3"><button class="btn btn-default" onClick="showOnly('groupRM');">R.M.'s Room</button></div>
+      </div>
+  
+      <div class="room" id="groupLivingRoom">
+        <h1>Automation</h1>
+        <button class="btn btn-default">Just Lights</button>
+        <button class="btn btn-default">Movie Time</button>
+        <button class="btn btn-default">Radio</button>
+        <button class="btn btn-default">All Off</button>
+
+        <h1>Lights</h1>
+        <button class="btn btn-default" onClick="lights_lr_bright();">Bright</button>
+        <button class="btn btn-default" onClick="lights_lr_half();">Half</button>
+        <button class="btn btn-default" onClick="lights_lr_movietime();">Movie Lights</button>
+        <button class="btn btn-default" onClick="lights_lr_off();">Off</button>
+      </div>
+      
+      <div class="room" id="groupOffice" style="display: none">
+        <h1>Lights</h1>
+        <button class="btn btn-default" onClick="lights_o_deepred();">Deep Red</button>
+        <button class="btn btn-default" onClick="lights_o_sunset();">Sunset</button>
+        <button class="btn btn-default" onClick="lights_o_dim();">Dim</button>
+        <button class="btn btn-default" onClick="lights_o_off();">Off</button>
+        <button class="btn btn-default" onClick="lights_o_complements();">Complements</button>
+        <button class="btn btn-default" onClick="lights_o_feetup();">Feet Up</button>
+        <button class="btn btn-default" onClick="lights_o_graygreen();">Gray Green</button>
+        <button class="btn btn-default" onClick="lights_o_moodyblues();">Moody Blues</button>
+        <button class="btn btn-default" onClick="lights_o_party();">Party</button>
+        <button class="btn btn-default" onClick="lights_o_beach();">Beach</button>
+        <button class="btn btn-default" onClick="lights_o_bluerain();">Blue Rain</button>
+
+      </div>
+      
+      <div class="room" id="groupAndi" style="display: none">
+        andi
+      </div>
+      
+      <div class="room" id="groupRM" style="display: none">
+        rm
+      </div>
+    
+    </div>
+    
+    <script src="remote.js"></script>
+    <!--
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    -->
+  </body>
+</html>

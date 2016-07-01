@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LCARS</title>
+  <style>
+    html, body {
+      background: black;
+      color: white;
+      overflow: hidden;
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+
+      /*font-size: 9vh;*/
+    }
+
+    .container { display: flex; }
+    .fullheight { min-height: 100%; }
+    .fullwidth { min-width: 100%; }
+
+    #outerbox { display: flex; flex-direction: row; min-width: 100%; min-height: 100%; }
+
+    #c1 { width: 15vw; flex-direction: column; margin: 0; margin-right: -1px; padding: 0; }
+    #c2 { width: 85vw; flex-direction: column; margin: 0; margin-left: -1px; padding: 0; }
+    .r1 { height: 18vh; }
+    .r2 { height: 2vh; background: yellow; margin-bottom: .25vh; }
+    .r3 { height: 2vh; background: green; margin-top: .25vh; }
+    .r4 { height: 78vh; }
+    #c1r1 { background: red; }
+    #c1r2 { border-radius: 0 0 0 2vh; }
+    #c1r3 { border-radius: 2vh 0 0 0; }
+    #c1r4 { background: blue; }
+
+
+  </style>
+</head>
+<body>
+  <div class="container fullwidth fullheight" id="outerbox">
+    <div class="container" id="c1">
+      <div class="container r1" id="c1r1">
+1
+      </div>
+      <div class="container r2" id="c1r2">
+2
+      </div>
+      <div class="container r3" id="c1r3">
+3
+      </div>
+      <div class="container r4" id="c1r4">
+4
+      </div>
+    </div>
+    <div class="container" id="c2">
+      <div class="container r1" id="c2r1">
+1
+      </div>
+      <div class="container r2" id="c2r2">
+2
+      </div>
+      <div class="container r3" id="c2r3">
+3
+      </div>
+      <div class="container r4" id="c2r4">
+4
+      </div>
+    </div>
+  </div>
+</body>
+</html>
