@@ -11,16 +11,28 @@
       <div id="container">
         <div id="logo">
           <h1>comrade</h1>
-          <h3>ver 0.0.1 <!-- grr, gives electron version, not app version<script>document.write(electron.getVersion)</script> --></h3>
+          <h3 id="ver">ver 
+            <script>
+              var fs = require('fs');
+              var file = fs.readFileSync('package.json'); 
+              document.write(JSON.parse(file).version);
+            </script>
+          </h3>
         </div>
 
         <div id="buttonbar">
           <ul>
             <li>
-              <button id='btnClock' onClick='launch("clock");'>Clock</button>
+              <div class='btnapp' id='btnClock' onClick='launch("clock");'>
+                <img class='btnimg' src="img/clock.png">
+                Clock
+              </div>
             </li>
             <li>
-              <button id='btnMediaRemote' onClick='launch("mediaremote");'>Media Remote</button>
+              <div class= 'btnapp' id='btnMediaRemote' onClick='launch("mediaremote");'>
+                <img class='btnimg' src='img/control.png'>
+                Media Remote
+                </div>
             </li>
           </ul>
 
@@ -28,9 +40,9 @@
       </div>
 
       <div id="versions">
-        node ver <script>document.write(process.versions.node)</script>,
-        Chrome ver <script>document.write(process.versions.chrome)</script>,
-        Electron ver <script>document.write(process.versions.electron)</script>.
+        node <script>document.write(process.versions.node)</script> &#x2606;
+        Chrome <script>document.write(process.versions.chrome)</script> &#x2606;
+        Electron <script>document.write(process.versions.electron)</script>.
       </div>
     </div>
   </body>
