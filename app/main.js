@@ -98,16 +98,3 @@ ipcMain.on('changeApplet', (event, url) => {
   win.loadURL(url);
   event.returnValue = true;
 });
-
-function pageLoaded() {
-  // Set some default function button behaviors
-  hwF1.on('rise', function () {
-    console.log("F1 undefined");
-  });
-  hwF2.on('rise', function() {
-    console.log("F2 undefined");
-  });
-  hwF3.on('rise', function() {
-    console.log("F3 undefined");
-  });
-}

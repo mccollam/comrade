@@ -2,6 +2,11 @@
 const path = require('path');
 const {ipcRenderer} = require('electron');
 
+var hwF1 = electron.remote.require('./main').hwF1;
+var hwF2 = electron.remote.require('./main').hwF2;
+var hwF3 = electron.remote.require('./main').hwF3;
+
+
 function launch(applet) {
   // TODO: Error checking, etc.!
   // TODO: Dynamically generate list of applets
@@ -20,4 +25,17 @@ function launch(applet) {
   var page = path.join('file://', __dirname, appletPath);
   
   ipcRenderer.send('changeApplet', page);
+}
+
+function pageLoaded() {
+  // Set some default function button behaviors
+  hwF1.on('rise', function () {
+    console.log("F1 undefined");
+  });
+  hwF2.on('rise', function() {
+    console.log("F2 undefined");
+  });
+  hwF3.on('rise', function() {
+    console.log("F3 undefined");
+  });
 }
