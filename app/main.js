@@ -52,7 +52,7 @@ function createApp() {
     // Think about this -- it might make sense to reserve this for the clock only
   });
 
-  function f1() { alert("undefined"); }
+  function f1() { console.log("F1 undefined"); }
   function f2() {}
   function f3() {}
 
