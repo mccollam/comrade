@@ -2,6 +2,10 @@
 const tformat = '24h';
 const dformat = ''; // FIXME: update when formatDate does anything useful
 
+var electron = require('electron');
+var f1 = electron.remote.require('../main').f1;
+f1 = function(){ alert("here"); };
+
 function startClock() {
     window.setInterval(showClock, 500);
 }

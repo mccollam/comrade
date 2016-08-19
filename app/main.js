@@ -3,13 +3,30 @@ const {app} = electron;
 const {BrowserWindow} = electron;
 const {ipcMain} = electron;
 
+// GPIO on Raspberry Pi 3
+const hwHome = require('pi-pins').connect(21);
+const hwSnooze = require('pi-pins').connect(12);
+const hwF1 = require('pi-pins').connect(17);
+const hwF2 = require('pi-pins').connect(27);
+const hwF3 = require('pi-pins').connect(22);
+const hwDisp = require('pi-pins').connect(18);
+
+// Electron window
 let win;
+
+////// Set up hardware buttons
+hwHome.mode('in');
+hwSnooze.mode('in');
+hwF1.mode('in');
+hwF2.mode('in');
+hwF3.mode('in');
+hwDisp.mode('in');
 
 // Minimum size (definition for "small" displays)
 const smallWidth = 800;
 const smallHeight = 480;
 
-function createMainWindow() {
+function createApp() {
   // On small displays we want to be fullscreen and chromeless
   var size = electron.screen.getPrimaryDisplay();
   var useFullScreen = (size.height <= smallHeight || size.width <= smallWidth) ? true : false; 
@@ -17,7 +34,7 @@ function createMainWindow() {
       width: smallWidth,
       height: smallHeight,
       fullscreen: useFullScreen,
-      frame: !useFullScreen
+      frame: !useFullScreen,
     });
 
   win.loadURL(`file://${__dirname}/index.html`);
@@ -25,12 +42,41 @@ function createMainWindow() {
   win.on('closed', () => {
     win = null;
   });
+
+  // Set up hardware buttons
+  hwHome.on('rise', function() {
+    win.loadURL(`file://${__dirname}/index.html`);
+  });
+  hwSnooze.on('rise', function() {
+    // TODO - snooze active alarm, maybe pass event to active applet?
+    // Think about this -- it might make sense to reserve this for the clock only
+  });
+
+  function f1() { alert("undefined"); }
+  function f2() {}
+  function f3() {}
+
+  hwF1.on('rise', f1());
+  hwF2.on('rise', function() {
+    // TODO - pass event to active applet
+  });
+  hwF3.on('rise', function() {
+    // TODO - pass event to active applet
+  });
+  hwDisp.on('rise', function() {
+    // TODO - toggle screen backlight
+  });
+
+  exports.f1 = f1;
+  exports.f2 = f2;
+  exports.f3 = f3;
+
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createMainWindow);
+app.on('ready', createApp);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -39,8 +85,13 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (win === null) {
-    createMainWindow();
+    createApp();
   }
+});
+
+// Don't create menu bars
+app.on('browser-window-created',function(e,window) {
+    window.setMenu(null);
 });
 
 ipcMain.on('changeApplet', (event, url) => {
