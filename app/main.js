@@ -28,12 +28,12 @@ const smallHeight = 480;
 
 function clearFunctionButtons() {
   // Unbind all events before switching applet context
-  hwF1.off('rise');
-  hwF2.off('rise');
-  hwF3.off('rise');
+  hwF1.removeAllListeners();
+  hwF2.removeAllListeners();
+  hwF3.removeAllListeners();
 
   // Add this back in if I decide to allow applets to use 'snooze'
-  //hwSnooze.off();
+  //hwSnooze.removeAllListeners();
 }
 
 function createApp() {
@@ -93,8 +93,7 @@ app.on('browser-window-created',function(e,window) {
 });
 
 ipcMain.on('changeApplet', (event, url) => {
-  //clearFunctionButtons();
-  hwF1.off('rise');
+  clearFunctionButtons();
   console.log(url);
   win.loadURL(url);
   event.returnValue = true;
