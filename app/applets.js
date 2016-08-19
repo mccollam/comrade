@@ -30,6 +30,7 @@ function launch(applet) {
 
 function pageLoaded() {
   // Set some default function button behaviors
+  console.log("Setting default function button behaviors");
   hwF1.on('rise', function () {
     console.log("F1 undefined");
   });
