@@ -52,11 +52,10 @@ function createApp() {
     // Think about this -- it might make sense to reserve this for the clock only
   });
 
-  f1 = function () { console.log("F1 undefined"); };
-  function f2() {}
-  function f3() {}
-
-  hwF1.on('rise', f1);
+  hwF1.on('rise', function () {
+    // TODO - pass event to active applet
+    console.log("F1 undefined");
+  });
   hwF2.on('rise', function() {
     // TODO - pass event to active applet
   });
@@ -67,9 +66,9 @@ function createApp() {
     // TODO - toggle screen backlight
   });
 
-  exports.f1 = f1;
-  exports.f2 = f2;
-  exports.f3 = f3;
+  exports.hwF1 = hwF1;
+  exports.hwF2 = hwF2;
+  exports.hwF3 = hwF3;
 
 }
 

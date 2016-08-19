@@ -3,8 +3,12 @@ const tformat = '24h';
 const dformat = ''; // FIXME: update when formatDate does anything useful
 
 var electron = require('electron');
-var f1 = electron.remote.require('../../main.js').f1;
-f1 = function(){ console.log("F1 inside clock"); };
+
+var hwF1 = electron.remote.require('./main').hwF1;
+hwF1.on('rise', function () {
+// TODO - pass event to active applet
+console.log("F1 for clock");
+});
 
 function startClock() {
     window.setInterval(showClock, 500);
