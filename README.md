@@ -1,3 +1,6 @@
+comrade
+=======
+
 A general purpose alarm clock computer, similar to a [Chumby](https://www.wikiwand.com/en/Chumby)
 
 Current status:
@@ -16,4 +19,5 @@ Bugs:
 * White flash/long delay when switching apps
 
 Ideas:
+------
  * Prestart various applets and just show them when launched?  (Would increase startup speed at the expense of memory/CPU usage, so should probably make this optional within applets)
