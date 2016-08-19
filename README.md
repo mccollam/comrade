@@ -1,4 +1,4 @@
-A general purpose alarm clock computer, similar to a Chumby
+A general purpose alarm clock computer, similar to a [Chumby](https://www.wikiwand.com/en/Chumby)
 
 Current status:
 ---------------
@@ -8,6 +8,7 @@ Current status:
 Todo:
 -----
 * Hook up display button functionality
+* Don't pin to specific electron version (once the [upstream bug](https://github.com/electron/electron/issues/5851) is fixed)
 
 Bugs:
 -----
