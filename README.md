@@ -1,9 +1,16 @@
 A general purpose alarm clock computer, similar to a Chumby
 
+Current status:
+---------------
+* Home button works, returning to main menu from any applet
+* Function buttons are available from applets and can be redefined in each applet.  (They remain functional only while an applet is loaded, being cleared when returning home.)
+
 Todo:
-* Hook up buttons other than home button
+-----
+* Hook up display button functionality
 
 Bugs:
+-----
 * Too easy to drag instead of click buttons on screen
 * White flash/long delay when switching apps
 

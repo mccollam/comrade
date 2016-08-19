@@ -1,6 +1,6 @@
 {
   "name": "comrade",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A general purpose alarm clock computer, similar to a Chumby",
   "main": "app/main.js",
   "scripts": {
