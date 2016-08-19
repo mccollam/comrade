@@ -3,6 +3,8 @@ comrade
 
 A general purpose alarm clock computer, similar to a [Chumby](https://www.wikiwand.com/en/Chumby)
 
+![alt text](docs/comrade.jpg "A very blurry picture of the current state of comrade")
+
 Current status:
 ---------------
 * Home button works, returning to main menu from any applet
