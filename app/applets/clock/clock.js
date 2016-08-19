@@ -2,12 +2,10 @@
 const tformat = '24h';
 const dformat = ''; // FIXME: update when formatDate does anything useful
 
-var electron = require('electron');
+const {ipcRenderer} = require('electron');
 
-var hwF1 = electron.remote.require('./main').hwF1;
-hwF1.on('rise', function () {
-// TODO - pass event to active applet
-console.log("F1 for clock");
+ipcRenderer.send('setButton', 'F1', function (){
+    console.log("F1 for clock");
 });
 
 function startClock() {
