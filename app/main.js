@@ -52,11 +52,11 @@ function createApp() {
     // Think about this -- it might make sense to reserve this for the clock only
   });
 
-  function f1() { console.log("F1 undefined"); }
+  f1 = function () { console.log("F1 undefined"); };
   function f2() {}
   function f3() {}
 
-  hwF1.on('rise', f1());
+  hwF1.on('rise', f1);
   hwF2.on('rise', function() {
     // TODO - pass event to active applet
   });
