@@ -55,6 +55,7 @@ function createApp() {
 
   // Set up hardware buttons
   hwHome.on('rise', function() {
+    clearFunctionButtons();
     win.loadURL(`file://${__dirname}/index.html`);
   });
   hwSnooze.on('rise', function() {
