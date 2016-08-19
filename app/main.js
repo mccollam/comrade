@@ -26,6 +26,16 @@ hwDisp.mode('in');
 const smallWidth = 800;
 const smallHeight = 480;
 
+function clearFunctionButtons() {
+  // Unbind all events before switching applet context
+  hwF1.off();
+  hwF2.off();
+  hwF3.off();
+
+  // Add this back in if I decide to allow applets to use 'snooze'
+  //hwSnooze.off();
+}
+
 function createApp() {
   // On small displays we want to be fullscreen and chromeless
   var size = electron.screen.getPrimaryDisplay();
@@ -50,17 +60,6 @@ function createApp() {
   hwSnooze.on('rise', function() {
     // TODO - snooze active alarm, maybe pass event to active applet?
     // Think about this -- it might make sense to reserve this for the clock only
-  });
-
-  hwF1.on('rise', function () {
-    // TODO - pass event to active applet
-    console.log("F1 undefined");
-  });
-  hwF2.on('rise', function() {
-    // TODO - pass event to active applet
-  });
-  hwF3.on('rise', function() {
-    // TODO - pass event to active applet
   });
   hwDisp.on('rise', function() {
     // TODO - toggle screen backlight
@@ -94,7 +93,21 @@ app.on('browser-window-created',function(e,window) {
 });
 
 ipcMain.on('changeApplet', (event, url) => {
+  clearFunctionButtons();
   console.log(url);
   win.loadURL(url);
   event.returnValue = true;
 });
+
+function pageLoaded() {
+  // Set some default function button behaviors
+  hwF1.on('rise', function () {
+    console.log("F1 undefined");
+  });
+  hwF2.on('rise', function() {
+    console.log("F2 undefined");
+  });
+  hwF3.on('rise', function() {
+    console.log("F3 undefined");
+  });
+}
