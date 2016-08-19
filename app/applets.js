@@ -2,9 +2,9 @@
 const path = require('path');
 const {ipcRenderer} = require('electron');
 
-var hwF1 = electron.remote.require('./main').hwF1;
-var hwF2 = electron.remote.require('./main').hwF2;
-var hwF3 = electron.remote.require('./main').hwF3;
+var hwF1 = ipcRenderer.remote.require('./main').hwF1;
+var hwF2 = ipcRenderer.remote.require('./main').hwF2;
+var hwF3 = ipcRenderer.remote.require('./main').hwF3;
 
 
 function launch(applet) {
