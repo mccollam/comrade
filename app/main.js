@@ -98,16 +98,3 @@ ipcMain.on('changeApplet', (event, url) => {
   win.loadURL(url);
   event.returnValue = true;
 });
-
-// There's probably a cleaner way to do this...
-ipcMain.on('setF1', (event, fn) => {
-  hwF1.on('rise', fn);
-});
-
-ipcMain.on('setF2', (event, fn) => {
-  hwF2.on('rise', fn);
-});
-
-ipcMain.on('setF3', (event, fn) => {
-  hwF3.on('rise', fn);
-});

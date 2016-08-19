@@ -1,6 +1,11 @@
 
 const path = require('path');
 const {ipcRenderer} = require('electron');
+const electron = require('electron');
+
+var hwF1 = electron.remote.require('./main').hwF1;
+var hwF2 = electron.remote.require('./main').hwF2;
+var hwF3 = electron.remote.require('./main').hwF3;
 
 function launch(applet) {
   // TODO: Error checking, etc.!
@@ -25,13 +30,13 @@ function launch(applet) {
 function pageLoaded() {
   // Set some default function button behaviors
   console.log("Setting default function button behaviors");
-  ipcRenderer.send('setF1', function() {
-      console.log("F1 undefined");
+  hwF1.on('rise', function() {
+    console.log("F1 undefined");
   });
-  ipcRenderer.send('setF2', function() {
-      console.log("F2 undefined");
+  hwF2.on('rise', function() {
+    console.log("F2 undefined");
   });
-  ipcRenderer.send('setF3', function() {
-      console.log("F3 undefined");
+  hwF3.on('rise', function() {
+    console.log("F3 undefined");
   });
 }
