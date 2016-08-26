@@ -10,6 +10,7 @@ const hwF1 = require('pi-pins').connect(17);
 const hwF2 = require('pi-pins').connect(27);
 const hwF3 = require('pi-pins').connect(22);
 const hwDisp = require('pi-pins').connect(18);
+const hwPiezo = require('pi-pins').connect(26);
 
 // Electron window
 let win;
@@ -21,6 +22,7 @@ hwF1.mode('in');
 hwF2.mode('in');
 hwF3.mode('in');
 hwDisp.mode('in');
+hwPiezo.mode('out');
 
 // Minimum size (definition for "small" displays)
 const smallWidth = 800;
@@ -31,6 +33,22 @@ function clearFunctionButtons() {
   hwF1.removeAllListeners();
   hwF2.removeAllListeners();
   hwF3.removeAllListeners();
+
+  // ----- TEMPORARY -----
+  // Test piezo
+  hwF1.addListener(function() {
+    while (true) {
+      hwPiezo.writeSync(1);
+      sleep 1;
+      hwPiezo.writeSync(0);
+      sleep 1;
+    }
+  });
+
+  hwF2.addListener(function() {
+    hwF1.removeAllListeners();
+  });
+  // ----- END TEMPORARY -----
 
   // Add this back in if I decide to allow applets to use 'snooze'
   //hwSnooze.removeAllListeners();
