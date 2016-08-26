@@ -37,16 +37,11 @@ function clearFunctionButtons() {
   // ----- TEMPORARY -----
   // Test piezo
   hwF1.addListener(function() {
-    while (true) {
-      hwPiezo.writeSync(1);
-      sleep 1;
-      hwPiezo.writeSync(0);
-      sleep 1;
-    }
+    hwPiezo.writeSync(1);
   });
 
   hwF2.addListener(function() {
-    hwF1.removeAllListeners();
+    hwPiezo.writeSync(0);
   });
   // ----- END TEMPORARY -----
 
