@@ -12,6 +12,9 @@ const hwF3 = require('pi-pins').connect(22);
 const hwDisp = require('pi-pins').connect(18);
 const hwPiezo = require('pi-pins').connect(26);
 
+// Interval timer for buzzer
+var ivBuzz;
+
 // Electron window
 let win;
 
@@ -36,23 +39,45 @@ function clearFunctionButtons() {
 
   // ----- TEMPORARY -----
   // Test piezo
-  var iv;
   var state = false;
   hwF1.on('rise', function() {
-    iv = setInterval(function() {
-      state = !state;
-      hwPiezo.value(state);
-    }, 2);
+    buzzPiezo();
   });
 
   hwF2.on('rise', function() {
-    clearInterval(iv);
+    clearInterval(ivBuzz);
     hwPiezo.value(false);
   });
   // ----- END TEMPORARY -----
 
   // Add this back in if I decide to allow applets to use 'snooze'
   //hwSnooze.removeAllListeners();
+}
+
+function buzzPiezo() {
+  var oscilator = false;
+  var buzzing = false;
+  var ivInternal;
+
+  function startBuzz() {
+    ivBuzz = setInterval(function() {
+      oscillator = !oscilator;
+      hwPiezo.value(oscilator);
+    }, 2);
+  };
+
+  function stopBuzz() {
+    clearInterval(ivBuzz);
+  };
+
+  clearInterval(ivBuzz);
+  ivInternal = setInterval(function() {
+    buzzing = !buzzing;
+    if (buzzing)
+      stopBuzz();
+    else
+      startBuzz();
+  }, 250);
 }
 
 function createApp() {
