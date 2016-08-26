@@ -3,6 +3,8 @@ const {app} = electron;
 const {BrowserWindow} = electron;
 const {ipcMain} = electron;
 
+const piezo = require('piezo');
+
 // GPIO on Raspberry Pi 3
 const hwHome = require('pi-pins').connect(21);
 const hwSnooze = require('pi-pins').connect(12);
@@ -11,9 +13,6 @@ const hwF2 = require('pi-pins').connect(27);
 const hwF3 = require('pi-pins').connect(22);
 const hwDisp = require('pi-pins').connect(18);
 const hwPiezo = require('pi-pins').connect(26);
-
-// Interval timer for buzzer
-var ivBuzz;
 
 // Electron window
 let win;
@@ -41,53 +40,16 @@ function clearFunctionButtons() {
   // Test piezo
   var state = false;
   hwF1.on('rise', function() {
-    buzzPiezo();
+    piezo.startBuzzer(hwPiezo);
   });
 
   hwF2.on('rise', function() {
-    clearInterval(ivBuzz);
-    hwPiezo.value(false);
+    piezo.stopBuzzer(hwPiezo);
   });
   // ----- END TEMPORARY -----
 
   // Add this back in if I decide to allow applets to use 'snooze'
   //hwSnooze.removeAllListeners();
-}
-
-function buzzPiezo() {
-  var oscillator = false;
-  var buzzing = false;
-  var ivOscillator;
-
-  console.log('In buzzPiezo()');
-
-  function startBuzz() {
-    console.log('Starting buzz');
-    ivOscillator = setInterval(function() {
-      oscillator = !oscillator;
-      hwPiezo.value(oscillator);
-    }, 2);
-  };
-
-  function stopBuzz() {
-    console.log('Stopping buzz');
-    clearInterval(ivOscillator);
-    hwPiezo.value(false);
-  };
-
-  console.log('Clearing any existing intervals...');
-  clearInterval(ivBuzz);
-  ivBuzz = setInterval(function() {
-    buzzing = !buzzing;
-    if (buzzing) {
-      console.log('Calling stopBuzz()');
-      stopBuzz();
-    }
-    else {
-      console.log('Calling startBuzz()');
-      startBuzz();
-    }
-  }, 500);
 }
 
 function createApp() {
