@@ -27,10 +27,7 @@ function buzzPiezo(pin, delay=500, oscSpeed=2) {
   var buzzing = false;
   var ivOscillator;
 
-  console.log('In buzzPiezo()');
-
   function startBuzz() {
-    console.log('Starting buzz');
     ivOscillator = setInterval(function() {
       oscillator = !oscillator;
       pin.value(oscillator);
@@ -38,21 +35,18 @@ function buzzPiezo(pin, delay=500, oscSpeed=2) {
   };
 
   function stopBuzz() {
-    console.log('Stopping buzz');
     clearInterval(ivOscillator);
+    clearInterval(ivBuzz);
     pin.value(false);
   };
 
-  console.log('Clearing any existing intervals...');
   clearInterval(ivBuzz);
   ivBuzz = setInterval(function() {
     buzzing = !buzzing;
     if (buzzing) {
-      console.log('Calling stopBuzz()');
       stopBuzz();
     }
     else {
-      console.log('Calling startBuzz()');
       startBuzz();
     }
   }, delay);
