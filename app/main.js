@@ -36,12 +36,18 @@ function clearFunctionButtons() {
 
   // ----- TEMPORARY -----
   // Test piezo
+  var iv;
+  var state = false;
   hwF1.on('rise', function() {
-    hwPiezo.writeSync(1);
+    iv = setInterval(function() {
+      state = !state;
+      hwPiezo.value(state);
+    }, 50);
   });
 
   hwF2.on('rise', function() {
-    hwPiezo.writeSync(0);
+    clearInterval(iv);
+    hwPiezo.value(false);
   });
   // ----- END TEMPORARY -----
 
