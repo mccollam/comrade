@@ -42,7 +42,7 @@ function clearFunctionButtons() {
     iv = setInterval(function() {
       state = !state;
       hwPiezo.value(state);
-    }, 50);
+    }, 2);
   });
 
   hwF2.on('rise', function() {
