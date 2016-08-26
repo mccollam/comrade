@@ -59,6 +59,8 @@ function buzzPiezo() {
   var buzzing = false;
   var ivInternal;
 
+  console.log('In buzzPiezo()');
+
   function startBuzz() {
     console.log('Starting buzz');
     ivBuzz = setInterval(function() {
@@ -72,13 +74,18 @@ function buzzPiezo() {
     clearInterval(ivBuzz);
   };
 
+  console.log('Clearing any existing intervals...');
   clearInterval(ivBuzz);
   ivInternal = setInterval(function() {
     buzzing = !buzzing;
-    if (buzzing)
+    if (buzzing) {
+      console.log('Calling stopBuzz()');
       stopBuzz();
-    else
+    }
+    else {
+      console.log('Calling startBuzz()');
       startBuzz();
+    }
   }, 250);
 }
 
