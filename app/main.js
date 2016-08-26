@@ -3,7 +3,7 @@ const {app} = electron;
 const {BrowserWindow} = electron;
 const {ipcMain} = electron;
 
-const piezo = require('piezo');
+const piezo = require('./piezo.js');
 
 // GPIO on Raspberry Pi 3
 const hwHome = require('pi-pins').connect(21);
