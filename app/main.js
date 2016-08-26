@@ -57,7 +57,7 @@ function clearFunctionButtons() {
 function buzzPiezo() {
   var oscillator = false;
   var buzzing = false;
-  var ivInternal, ivOscillator;
+  var ivOscillator;
 
   console.log('In buzzPiezo()');
 
@@ -72,13 +72,12 @@ function buzzPiezo() {
   function stopBuzz() {
     console.log('Stopping buzz');
     clearInterval(ivOscillator);
-    clearInterval(ivInternal);
     hwPiezo.value(false);
   };
 
   console.log('Clearing any existing intervals...');
   clearInterval(ivBuzz);
-  ivInternal = setInterval(function() {
+  ivBuzz = setInterval(function() {
     buzzing = !buzzing;
     if (buzzing) {
       console.log('Calling stopBuzz()');
