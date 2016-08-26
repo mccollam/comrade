@@ -55,7 +55,7 @@ function clearFunctionButtons() {
 }
 
 function buzzPiezo() {
-  var oscilator = false;
+  var oscillator = false;
   var buzzing = false;
   var ivInternal;
 
@@ -63,8 +63,8 @@ function buzzPiezo() {
 
   function startBuzz() {
     console.log('Starting buzz');
-    ivBuzz = setInterval(function() {
-      oscillator = !oscilator;
+    ivInternal = setInterval(function() {
+      oscillator = !oscillator;
       hwPiezo.value(oscilator);
     }, 2);
   };
