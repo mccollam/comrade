@@ -72,8 +72,8 @@ function buzzPiezo() {
   function stopBuzz() {
     console.log('Stopping buzz');
     clearInterval(ivOscillator);
+    clearInterval(ivInternal);
     hwPiezo.value(false);
-    clearInterval(ivBuzz);
   };
 
   console.log('Clearing any existing intervals...');
