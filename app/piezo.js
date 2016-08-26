@@ -1,17 +1,22 @@
-// Interval timer for buzzer
-var ivBuzz;
+var ivBuzz;        // Interval timer for buzzer
+var inUse = false; // Prevent multiple simultaneous accesses
 
 var startBuzzer = function(pin, delay=500, freq=500) {
     // Wrapper to buzzPiezo()
     // Here because it may eventually do a bit more with things like
     // tunes/tones, etc.
+    if (inUse)
+        return false;
+
     oscSpeed = 1000/freq;
     buzzPiezo(pin, delay, oscSpeed);
+    inUse = true;
 }
 
 var stopBuzzer = function(pin) {
     clearInterval(ivBuzz);
     pin.value(false);
+    inUse = false;
 }
 
 exports.startBuzzer = startBuzzer;
