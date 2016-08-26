@@ -60,6 +60,7 @@ function buzzPiezo() {
   var ivInternal;
 
   function startBuzz() {
+    console.log('Starting buzz');
     ivBuzz = setInterval(function() {
       oscillator = !oscilator;
       hwPiezo.value(oscilator);
@@ -67,6 +68,7 @@ function buzzPiezo() {
   };
 
   function stopBuzz() {
+    console.log('Stopping buzz');
     clearInterval(ivBuzz);
   };
 
