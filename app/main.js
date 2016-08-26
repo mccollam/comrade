@@ -57,13 +57,13 @@ function clearFunctionButtons() {
 function buzzPiezo() {
   var oscillator = false;
   var buzzing = false;
-  var ivInternal;
+  var ivInternal, ivOscillator;
 
   console.log('In buzzPiezo()');
 
   function startBuzz() {
     console.log('Starting buzz');
-    ivInternal = setInterval(function() {
+    ivOscillator = setInterval(function() {
       oscillator = !oscillator;
       hwPiezo.value(oscillator);
     }, 2);
@@ -71,6 +71,8 @@ function buzzPiezo() {
 
   function stopBuzz() {
     console.log('Stopping buzz');
+    clearInterval(ivOscillator);
+    hwPiezo.value(false);
     clearInterval(ivBuzz);
   };
 
@@ -86,7 +88,7 @@ function buzzPiezo() {
       console.log('Calling startBuzz()');
       startBuzz();
     }
-  }, 250);
+  }, 500);
 }
 
 function createApp() {
@@ -122,6 +124,8 @@ function createApp() {
   exports.hwF1 = hwF1;
   exports.hwF2 = hwF2;
   exports.hwF3 = hwF3;
+  // Should we make the piezo buzzer available to applets?
+  // exports.hwPiezo = hwPiezo;
 
 }
 
