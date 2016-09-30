@@ -36,7 +36,6 @@ function buzzPiezo(pin, delay=500, oscSpeed=2) {
 
   function stopBuzz() {
     clearInterval(ivOscillator);
-    clearInterval(ivBuzz);
     pin.value(false);
   };
 
